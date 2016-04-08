@@ -1,14 +1,13 @@
 // Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
 var ibmApp = angular.module('ibmApp', ['ionic'])
-    //application config
-    ibmApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-    // $urlRouterProvider - letting us specifsy the default route when loading the module  
-        
+// Add support for Cordova. 
+// application config.    
+ibmApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    // $urlRouterProvider - letting us specifsy the default route when loading the module          
     $urlRouterProvider.otherwise('/')
     $stateProvider
         .state('main', {
@@ -42,5 +41,6 @@ var ibmApp = angular.module('ibmApp', ['ionic'])
                 }
             }
         })
-})
+}) // end of app config.
+// Add MobileFirst configuration stuff.
 
