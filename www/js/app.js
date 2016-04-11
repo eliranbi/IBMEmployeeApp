@@ -73,7 +73,7 @@ var wlInitOptions = {
 };
 
 function wlCommonInit() {
-  console.log(">> wlCommonInit() ..." );  
+  console.log(">> wlCommonInit() ..." );      
   var serverUrl = WL.App.getServerUrl(function(success){
       console.log(success);
   }, function(fail){
@@ -89,7 +89,8 @@ function wlCommonInit() {
           console.log(">> Failed to connect to MobileFirst Server");          
         }
   );
-		 
-  
+
+  WL.Analytics.send();    
+    
 };
 

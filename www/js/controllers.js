@@ -7,7 +7,7 @@ ibmApp.controller('appCtrl', function ($scope) {
             username: "",
             password: ""
         };
-    }
+    }                    
 })
 
 ibmApp.controller('mainCtrl', ['$scope', 'employees',  function ($scope, employees) {
@@ -15,7 +15,10 @@ ibmApp.controller('mainCtrl', ['$scope', 'employees',  function ($scope, employe
     //ionicMaterialInk.displayEffect();    
     $scope.employees = employees;
     
-    }])
+    var event = {viewLoad: 'Employee List View'};
+    WL.Analytics.log(event, 'Employee List View - loaded');
+    
+}])
 
 
 ibmApp.controller('employeeDetailCtrl', function($scope, EmployeeService,
@@ -32,11 +35,14 @@ ibmApp.controller('employeeDetailCtrl', function($scope, EmployeeService,
   $scope.employeeDetails = employeeDetailList;
   $scope.employeeDetails.email =  angular.lowercase($scope.employeeDetails.email);
 
+  var event = {viewLoad: 'Details View'};
+  WL.Analytics.log(event, 'Details View - loaded');
+    
 })
 
 
 ibmApp.controller('splashCtrl', ['$scope', '$stateParams', '$timeout', '$state', 'AuthenticateUserService', '$ionicPopup', function ($scope, $stateParams, $timeout, $state, AuthenticateUserService, $ionicPopup) {
-    console.log(">> splashCtrl - ... ");        
+    console.log(">> splashCtrl - ... ");          
     $scope.user = {
             username: "",
             password: ""
@@ -105,6 +111,8 @@ ibmApp.controller('splashCtrl', ['$scope', '$stateParams', '$timeout', '$state',
         
     $timeout(function(){        
         $scope.moveSplashBox();
-    }, 3000);
-        
+        var event = {viewLoad: 'Splash View'};
+        if(WL!=null && WL!=undefined) WL.Analytics.log(event, 'Splash View - loaded');
+    }, 3000);        
+    
 }])
