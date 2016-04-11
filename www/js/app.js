@@ -61,7 +61,6 @@ ibmApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider
 }) // end of app config.
 // Add MobileFirst configuration stuff.
 
-
 var Messages = {
   // Add here your messages for the default language.
   // Generate a similar file with a language suffix containing the translated messages.
@@ -79,6 +78,18 @@ function wlCommonInit() {
       console.log(success);
   }, function(fail){
       console.log(fail);
-  })
-}
+  });
+  
+  //Calling to the MobileFirst Server    
+  WLAuthorizationManager.obtainAccessToken().then(
+        function (accessToken) {
+          console.log(">> Success - Connected to MobileFirst Server");          
+        },
+        function (error) {
+          console.log(">> Failed to connect to MobileFirst Server");          
+        }
+  );
+		 
+  
+};
 
