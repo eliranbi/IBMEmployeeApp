@@ -1,4 +1,7 @@
 
+
+
+/* services.js */
 //application services for employee, employee details, and authetication service.
 ibmApp.factory("EmployeeService", function($http){
     console.log( ">> in EmployeeService ...");
@@ -30,6 +33,7 @@ ibmApp.factory("EmployeeService", function($http){
     };
 })
 
+
 ibmApp.factory("EmployeeDetailsService", function($http){
     console.log( ">> in EmployeeDetailsService ...");
     return {
@@ -48,24 +52,22 @@ ibmApp.factory("EmployeeDetailsService", function($http){
  })
 
 
-/* will be used to validate the username and password */
-ibmApp.factory("AuthenticateUserService", function ($http, $q) {
-    console.log(">> in AuthenticateUserService ...");
-    return {
-        authenticatUser: function (user) {            
-            // Perform some asynchronous operation, resolve or reject the promise when appropriate.
-            /* Will be replace with MFP WLResource Request to autenticate using back end*/                    
-            // set the deferred 
-            var deferred = $q.defer();
-            setTimeout(function() {
-                if(user.username == "demo" && user.password == "demo"){
-                   deferred.resolve(true);
-                }else{
-                   deferred.reject(false);
-                }                                
-            }); 
-            // return the deferred promise
-            return deferred.promise;
-        }
-    };
+
+/* controller.js */
+ibmApp.controller('employeeDetailCtrl', function($scope, EmployeeService,
+                             employeeDetailList , empId ,$ionicHistory) {
+  $scope.employee = {
+        "first_name" : "",
+        "last_name" : "",
+        "_id" : ""
+  }
+  $scope.employeeDetails = {}
+  console.log(">> in - employeeDetailCtrl:" + employeeDetailList);
+  //Employee service cached the list of employee
+  $scope.employee = EmployeeService.getEmployeeById(empId);
+  $scope.employeeDetails = employeeDetailList;
+  $scope.employeeDetails.email =  angular.lowercase($scope.employeeDetails.email);
+
 })
+
+

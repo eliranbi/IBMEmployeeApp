@@ -18,25 +18,22 @@ ibmApp.controller('mainCtrl', ['$scope', 'employees',  function ($scope, employe
     }])
 
 
-ibmApp.controller('employeeDetailCtrl', function ($scope, EmployeeService,
-    employeeDetailList, empId, $ionicHistory) {
-    $scope.employee = {
-        "first_name": "",
-        "last_name": "",
-        "_id": ""
-    }
-    $scope.employeeDetails = {}
-    console.log(">> in - employeeDetailCtrl:" + employeeDetailList);
-    //Employee service cached the list of employee
-    $scope.employee = EmployeeService.getEmployeeById(empId);
-    var data = employeeDetailList.data;
-    angular.forEach(data, function (emp) {
-        if (emp._id == $scope.employee._id) {
-            $scope.employeeDetails = emp;
-            $scope.employeeDetails.email = angular.lowercase($scope.employeeDetails.email);
-        }
-    });
+ibmApp.controller('employeeDetailCtrl', function($scope, EmployeeService,
+                             employeeDetailList , empId ,$ionicHistory) {
+  $scope.employee = {
+        "first_name" : "",
+        "last_name" : "",
+        "_id" : ""
+  }
+  $scope.employeeDetails = {}
+  console.log(">> in - employeeDetailCtrl:" + employeeDetailList);
+  //Employee service cached the list of employee
+  $scope.employee = EmployeeService.getEmployeeById(empId);
+  $scope.employeeDetails = employeeDetailList;
+  $scope.employeeDetails.email =  angular.lowercase($scope.employeeDetails.email);
+
 })
+
 
 ibmApp.controller('splashCtrl', ['$scope', '$stateParams', '$timeout', '$state', 'AuthenticateUserService', '$ionicPopup', function ($scope, $stateParams, $timeout, $state, AuthenticateUserService, $ionicPopup) {
     console.log(">> splashCtrl - ... ");        
