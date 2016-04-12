@@ -12,7 +12,7 @@ ibmApp.factory("EmployeeService", function($http){
                 employees = response.responseJSON;
                 return employees;
             }, function(response){
-                console.log("error:" + response);
+                console.log(">> getEmployeeList error:" + response);
                 return null;
             });
         },
@@ -41,7 +41,7 @@ ibmApp.factory("EmployeeDetailsService", function($http){
             return resourceRequest.send().then(function(response){
                 return response.responseJSON;
             }, function(response){
-                console.log("error:" + response);
+                console.log("getEmployeeDetails error:" + response);
                 return null;
             });
         }};
@@ -54,7 +54,7 @@ ibmApp.factory("AuthenticateUserService", function ($http, $q) {
     return {
         authenticatUser: function (user) {            
             // Perform some asynchronous operation, resolve or reject the promise when appropriate.
-            /* Will be replace with MFP WLResource Request to autenticate using back end*/                    
+            // Will be replace with MFP WLResource Request to autenticate using back end                      
             // set the deferred 
             var deferred = $q.defer();
             setTimeout(function() {
@@ -65,7 +65,7 @@ ibmApp.factory("AuthenticateUserService", function ($http, $q) {
                 }                                
             }); 
             // return the deferred promise
-            return deferred.promise;
+            return deferred.promise;            
         }
     };
 })

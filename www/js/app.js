@@ -7,6 +7,7 @@ var ibmApp = angular.module('ibmApp', ['ionic'])
 // Add support for Cordova. 
 ibmApp.run(function($ionicPlatform) {
            console.log('>> ibmApp.run ...');
+           //set the isChallenged               rtw    
            $ionicPlatform.ready(function() {
              // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
              // for form inputs)
@@ -79,18 +80,6 @@ function wlCommonInit() {
   }, function(fail){
       console.log(fail);
   });
-  
-  //Calling to the MobileFirst Server    
-  WLAuthorizationManager.obtainAccessToken().then(
-        function (accessToken) {
-          console.log(">> Success - Connected to MobileFirst Server");          
-        },
-        function (error) {
-          console.log(">> Failed to connect to MobileFirst Server");          
-        }
-  );
-
   WL.Analytics.send();    
-    
 };
 
